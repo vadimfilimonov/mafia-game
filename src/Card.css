@@ -1,4 +1,3 @@
-/* Основные стили для карты */
 .card {
   display: flex;
   justify-content: center;
@@ -19,55 +18,55 @@
 .card--closed {
   background-color: white;
   color: #007bff; 
-  font-size: 18px; 
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.card--closed::after {
+  content: attr(data-number);
 }
 
 .card--active {
   transform: rotateY(180deg); 
   background-color: #007bff; 
-  color: white;
+}
+
+.card--active::after {
+  font-size: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .card--active.card--red {
   background-color: red;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card--active.card--red::after {
+  content: "👍";
 }
 
 .card--active.card--black {
   background-color: black;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card--active.card--black::after {
+  content: "👎";
 }
 
 .card--active.card--don {
   background-color: purple;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  position: relative;
 }
 
 .card--active.card--don::after {
   content: "💍";
-  font-size: 50px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .card--active.card--sheriff {
-  background-color: red;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  position: relative;
+  background-color: yellow;
 }
 
 .card--active.card--sheriff::after {
   content: "⭐";
-  font-size: 50px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }

@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import { ROLE_RED, ROLE_BLACK, ROLE_SHERIFF, ROLE_DON } from './consts';
 import './Card.css'
 
-const Card = ({ role, number }) => {
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClick = () => {
-    setIsActive(!isActive);
-  };
-
+const Card = ({ role, number, isActive, handleClick }) => {
   const classNamesList = cn(
-    'card', 
-    { 
+    'card',
+    {
       'card--active': isActive,
       'card--closed': !isActive,
       'card--red': role === ROLE_RED,
