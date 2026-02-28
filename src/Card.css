@@ -1,0 +1,73 @@
+/* Основные стили для карты */
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 140px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-size: 32px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.3s ease;
+}
+
+.card--closed {
+  background-color: white;
+  color: #007bff; 
+  font-size: 18px; 
+}
+
+.card--active {
+  transform: rotateY(180deg); 
+  background-color: #007bff; 
+  color: white;
+}
+
+.card--active.card--red {
+  background-color: red;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card--active.card--black {
+  background-color: black;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card--active.card--don {
+  background-color: purple;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.card--active.card--don::after {
+  content: "💍";
+  font-size: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card--active.card--sheriff {
+  background-color: red;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.card--active.card--sheriff::after {
+  content: "⭐";
+  font-size: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
