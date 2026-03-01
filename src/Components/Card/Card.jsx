@@ -1,4 +1,3 @@
-import React from 'react';
 import cn from 'classnames';
 import { ROLE_RED, ROLE_BLACK, ROLE_SHERIFF, ROLE_DON, ROLES_EMOJI } from '../../consts';
 import './Card.css'

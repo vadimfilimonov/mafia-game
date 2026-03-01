@@ -1,29 +1,30 @@
 import { useState } from 'react';
-import Card from './Components/Card/Card';
 import _ from 'lodash';
+import Button from './Components/Button/Button';
+import Card from './Components/Card/Card';
 import { GAMES_ROLES, ROLES_EMOJI } from './consts';
 import './App.css'
 
+const DEFAULT_CARDS_VITISILITY_STATE = {
+  "1": false,
+  "2": false,
+  "3": false,
+  "4": false,
+  "5": false,
+  "6": false,
+  "7": false,
+  "8": false,
+  "9": false,
+  "10": false,
+};
+
 function App() {
   const [roles, setRoles] = useState(GAMES_ROLES);
-  const [visibilityCards, setVisibilityCards] = useState({
-    "1": false,
-    "2": false,
-    "3": false,
-    "4": false,
-    "5": false,
-    "6": false,
-    "7": false,
-    "8": false,
-    "9": false,
-    "10": false,
-  });
+  const [visibilityCards, setVisibilityCards] = useState({ ...DEFAULT_CARDS_VITISILITY_STATE });
 
   const handleReset = () => {
     const shuffledRoles = _.shuffle(roles);
     setRoles(shuffledRoles);
-    const hiddenCards = _.mapValues(visibilityCards, () => false);
-    setVisibilityCards({ ...hiddenCards });
   };
 
   const handleShowCard = (number) => () => {
@@ -35,15 +36,13 @@ function App() {
   };
 
   const handleShowCards = () => {
-    const isAllCardsVisible = _.every(visibilityCards, value => value)
-    if (!isAllCardsVisible) {
-      const showedCards = _.mapValues(visibilityCards, () => true);
-      setVisibilityCards({ ...showedCards });
-      return;
-    }
+    const cards = _.mapValues(visibilityCards, () => true);
+    setVisibilityCards({ ...cards });
+  };
 
-    const hiddenCards = _.mapValues(visibilityCards, () => false);
-    setVisibilityCards({ ...hiddenCards });
+  const handleHideCards = () => {
+    const cards = _.mapValues(visibilityCards, () => false);
+    setVisibilityCards({ ...cards });
   };
 
   const isAllCardsVisible = _.every(visibilityCards, value => value)
@@ -65,10 +64,9 @@ function App() {
         )}
       </div>
       <div className='toolbar container__toolbar'>
-        <button className="button" type="button" onClick={handleReset}>Reset</button>
-        <button className="button" type="button" onClick={handleShowCards}>
-          {_.every(visibilityCards, value => value) ? 'Спрятать все карты' : 'Раскрыть все карты'}
-        </button>
+        <Button handleClick={handleReset}>Shuffle</Button>
+        <Button handleClick={handleShowCards}>Open</Button>
+        <Button handleClick={handleHideCards}>Hide</Button>
       </div>
     </div>
   )
