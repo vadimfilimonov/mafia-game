@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Card from './Card';
+import Card from './Components/Card/Card';
 import _ from 'lodash';
 import { GAMES_ROLES, ROLES_EMOJI } from './consts';
 import './App.css'
