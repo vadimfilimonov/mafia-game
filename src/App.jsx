@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import _ from 'lodash';
 import Button from './Components/Button/Button';
 import Card from './Components/Card/Card';
@@ -19,12 +19,28 @@ const DEFAULT_CARDS_VITISILITY_STATE = {
 };
 
 function App() {
-  const [roles, setRoles] = useState([...GAMES_ROLES]);
+  const [roles, setRoles] = useState([]);
   const [visibilityCards, setVisibilityCards] = useState({ ...DEFAULT_CARDS_VITISILITY_STATE });
+
+  useEffect(() => {
+    const storedRoles = localStorage.getItem('roles');
+    if (!storedRoles) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setRoles([...GAMES_ROLES]);
+      return;
+    }
+
+    try {      
+      setRoles(JSON.parse(storedRoles));
+    } catch {
+      setRoles([...GAMES_ROLES]);
+    }
+  }, []);
 
   const handleReset = () => {
     const shuffledRoles = _.shuffle(roles);
     setRoles(shuffledRoles);
+    localStorage.setItem('roles', JSON.stringify(shuffledRoles));
   };
 
   const handleShowCard = (number) => () => {
