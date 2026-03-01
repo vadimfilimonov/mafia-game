@@ -66,7 +66,7 @@ function App() {
   return (
     <div className='container'>
       <ol className='roles container__roles'>
-        {roles.map((role, index) => <li>{isAllCardsVisible || visibilityCards[index + 1] ? ROLES_EMOJI[role] : "❓"}</li>)}
+        {roles.map((role, index) => <li key={index}>{isAllCardsVisible || visibilityCards[index + 1] ? ROLES_EMOJI[role] : "❓"}</li>)}
       </ol>
       <div className="cards container__cards">
         {roles.map((role, index) => 
