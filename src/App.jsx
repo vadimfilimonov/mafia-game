@@ -19,7 +19,7 @@ const DEFAULT_CARDS_VITISILITY_STATE = {
 };
 
 function App() {
-  const [roles, setRoles] = useState(GAMES_ROLES);
+  const [roles, setRoles] = useState([...GAMES_ROLES]);
   const [visibilityCards, setVisibilityCards] = useState({ ...DEFAULT_CARDS_VITISILITY_STATE });
 
   const handleReset = () => {
