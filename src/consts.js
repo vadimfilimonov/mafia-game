@@ -15,3 +15,10 @@ export const GAMES_ROLES = [
   ROLE_BLACK,
   ROLE_DON,
 ];
+
+export const ROLES_EMOJI = {
+  [ROLE_RED]: "👍",
+  [ROLE_BLACK]: "👎",
+  [ROLE_SHERIFF]: "⭐️",
+  [ROLE_DON]: "💍",
+}

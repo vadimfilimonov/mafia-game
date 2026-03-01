@@ -22,7 +22,7 @@
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 768px) {  
+@media (max-width: 768px) {
   .card {
     width: 100%;
     height: 0;
@@ -49,34 +49,22 @@
   background-color: #007bff; 
 }
 
-.card--active.card--red {
-  background-color: red;
+.card--active::after{ 
+  content: attr(data-emoji);
 }
 
-.card--active.card--red::after {
-  content: "👍";
+.card--active.card--red {
+  background-color: red;
 }
 
 .card--active.card--black {
   background-color: black;
 }
 
-.card--active.card--black::after {
-  content: "👎";
-}
-
 .card--active.card--don {
   background-color: purple;
 }
 
-.card--active.card--don::after {
-  content: "💍";
-}
-
 .card--active.card--sheriff {
   background-color: yellow;
-}
-
-.card--active.card--sheriff::after {
-  content: "⭐";
 }

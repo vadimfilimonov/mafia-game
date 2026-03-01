@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Card from './Card';
 import _ from 'lodash';
-import { GAMES_ROLES } from './consts';
+import { GAMES_ROLES, ROLES_EMOJI } from './consts';
 import './App.css'
 
 function App() {
@@ -46,8 +46,13 @@ function App() {
     setVisibilityCards({ ...hiddenCards });
   };
 
+  const isAllCardsVisible = _.every(visibilityCards, value => value)
+
   return (
     <div className='container'>
+      <ol className='roles container__roles'>
+        {roles.map((role, index) => <li>{isAllCardsVisible || visibilityCards[index + 1] ? ROLES_EMOJI[role] : "❓"}</li>)}
+      </ol>
       <div className="cards container__cards">
         {roles.map((role, index) => 
           <Card
