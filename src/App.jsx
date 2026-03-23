@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import _ from 'lodash';
 import Button from './Components/Button/Button';
 import Card from './Components/Card/Card';
@@ -8,7 +8,6 @@ import './App.css'
 function App() {
   const [roles, setRoles] = useState([]);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
-  const clickTimeoutRef = useRef(null);
 
   useEffect(() => {
     const storedRoles = localStorage.getItem('roles');
@@ -40,34 +39,6 @@ function App() {
     setActiveCardIndex((prevIndex) => (prevIndex - 1 + roles.length) % roles.length);
   };
 
-  const handleCardClick = () => {
-    if (clickTimeoutRef.current) {
-      clearTimeout(clickTimeoutRef.current);
-    }
-
-    clickTimeoutRef.current = setTimeout(() => {
-      handleNextCard();
-      clickTimeoutRef.current = null;
-    }, 200);
-  };
-
-  const handleCardDoubleClick = () => {
-    if (clickTimeoutRef.current) {
-      clearTimeout(clickTimeoutRef.current);
-      clickTimeoutRef.current = null;
-    }
-
-    handlePrevCard();
-  };
-
-  useEffect(() => {
-    return () => {
-      if (clickTimeoutRef.current) {
-        clearTimeout(clickTimeoutRef.current);
-      }
-    };
-  }, []);
-
   return (
     <div className='container'>
       <div className="cards container__cards" style={{ '--active-card-index': activeCardIndex }}>
@@ -76,8 +47,8 @@ function App() {
           key={index}
           role={role}
           number={index + 1}
-          handleClick={handleCardClick}
-          handleDoubleClick={handleCardDoubleClick}
+          handleRightPartClick={handleNextCard}
+          handleLeftPartClick={handlePrevCard}
         />
         )}
       </div>

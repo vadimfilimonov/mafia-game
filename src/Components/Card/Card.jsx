@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { ROLE_RED, ROLE_BLACK, ROLE_SHERIFF, ROLE_DON, ROLES_EMOJI } from '../../consts';
 import './Card.css'
 
-const Card = ({ role, number, handleClick, handleDoubleClick }) => {
+const Card = ({ role, number, handleRightPartClick, handleLeftPartClick }) => {
   const classNamesList = cn(
     'card',
     {
@@ -18,9 +18,10 @@ const Card = ({ role, number, handleClick, handleDoubleClick }) => {
       className={classNamesList}
       data-number={number}
       data-emoji={ROLES_EMOJI[role]}
-      onClick={handleClick}
-      onDoubleClick={handleDoubleClick}
-    />
+    >
+      <div className='card__left-part' onClick={handleLeftPartClick} />
+      <div className='card__right-part' onClick={handleRightPartClick} />
+    </div>
   );
 };
 

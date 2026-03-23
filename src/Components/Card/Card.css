@@ -16,6 +16,24 @@
   pointer-events: none;
 }
 
+.card__left-part,
+.card__right-part {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 50%;
+  pointer-events: none;
+}
+
+.card__left-part {
+  left: 0;
+}
+
+.card__right-part {
+  right: 0;
+}
+
 .card::after {
   content: attr(data-emoji);
   position: absolute;
@@ -52,6 +70,12 @@
     pointer-events: auto;
   }
 
+  .card__left-part,
+  .card__right-part {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
   .card::before {
     right: 16px;
     bottom: 14px;
@@ -61,7 +85,6 @@
     border-radius: 20px;
   }
 }
-
 
 .card--red {
   background-color: red;
