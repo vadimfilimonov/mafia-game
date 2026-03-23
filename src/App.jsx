@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import _ from 'lodash';
 import Button from './Components/Button/Button';
 import Card from './Components/Card/Card';
-import { GAMES_ROLES, ROLES_EMOJI } from './consts';
+import { GAMES_ROLES } from './consts';
 import './App.css'
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
       return;
     }
 
-    try {      
+    try {
       setRoles(JSON.parse(storedRoles));
     } catch {
       setRoles([...GAMES_ROLES]);
@@ -42,14 +42,14 @@ function App() {
   return (
     <div className='container'>
       <div className="cards container__cards" style={{ '--active-card-index': activeCardIndex }}>
-        {roles.map((role, index) => 
+        {roles.map((role, index) =>
           <Card
-          key={index}
-          role={role}
-          number={index + 1}
-          handleRightPartClick={handleNextCard}
-          handleLeftPartClick={handlePrevCard}
-        />
+            key={index}
+            role={role}
+            number={index + 1}
+            handleRightPartClick={handleNextCard}
+            handleLeftPartClick={handlePrevCard}
+          />
         )}
       </div>
       <div className='toolbar container__toolbar'>

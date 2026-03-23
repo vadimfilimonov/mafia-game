@@ -2,11 +2,11 @@ import './Button.css';
 
 const Button = ({ children, handleClick }) => {
   return (
-    <button 
-      className="button" 
-      type="button" 
+    <button
+      className="button"
+      type="button"
       onClick={handleClick}>
-        {children}
+      {children}
     </button>
   );
 };
