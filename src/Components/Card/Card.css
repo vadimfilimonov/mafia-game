@@ -12,7 +12,6 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
   background-color: #007bff;
-  transform: rotateY(180deg); 
 }
 
 .card::after {
@@ -23,6 +22,23 @@
   transform: translate(-50%, -50%);
 }
 
+.card::before {
+  content: attr(data-number);
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  z-index: 1;
+  min-width: 20px;
+  padding: 1px 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  background: rgb(0 0 0 / 35%);
+  border-radius: 10px;
+}
+
 @media (width <= 768px) {
   .card {
     flex: 0 0 auto;
@@ -31,6 +47,15 @@
     padding-bottom: 133%;
     font-size: 200px; 
     scroll-snap-align: start;
+  }
+
+  .card::before {
+    right: 16px;
+    bottom: 14px;
+    min-width: 46px;
+    padding: 4px 10px;
+    font-size: 30px;
+    border-radius: 20px;
   }
 }
 
