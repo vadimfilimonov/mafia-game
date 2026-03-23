@@ -31,9 +31,6 @@ function App() {
 
   return (
     <div className='container'>
-      <ol className='roles container__roles'>
-        {roles.map((role, index) => <li key={index}>{ROLES_EMOJI[role]}</li>)}
-      </ol>
       <div className="cards container__cards">
         {roles.map((role, index) => 
           <Card
