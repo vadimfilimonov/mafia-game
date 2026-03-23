@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     const storedRoles = localStorage.getItem('roles');
     if (!storedRoles) {
+      // TODO: Fix linter error
       // eslint-disable-next-line react-hooks/set-state-in-effect
       const shuffledRoles = _.shuffle([...GAMES_ROLES]);
       setRoles(shuffledRoles);

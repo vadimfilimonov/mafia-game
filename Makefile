@@ -14,7 +14,8 @@ build:
 	npm run build
 
 lint:
-	npm run lint
+	npx stylelint '**/*.css' --fix
+	npx eslint . --fix
 
 deploy:
 	DEPLOY_TARGET=gh-pages npx vite build
