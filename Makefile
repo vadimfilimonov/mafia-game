@@ -17,4 +17,8 @@ lint:
 	npm run lint
 
 deploy:
-	npm run deploy
+	DEPLOY_TARGET=gh-pages npx vite build
+	npx gh-pages -d dist
+	DEPLOY_TARGET=surge npx vite build
+	cp dist/index.html dist/200.html
+	npx surge ./dist mafia-game.surge.sh

@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { ghPages } from "vite-plugin-gh-pages";
+
+const BASE_PATH = process.env.DEPLOY_TARGET === 'gh-pages' ? '/mafia-game/' : '/'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/mafia-game/',
+  base: BASE_PATH,
   plugins: [
-    ghPages(),
     react({
       babel: {
         plugins: [['babel-plugin-react-compiler']],
