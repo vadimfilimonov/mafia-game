@@ -24,11 +24,11 @@
 @media (width <= 768px) {
   .container__cards {
     position: fixed;
-    top: 110px;
+    top: 0;
     bottom: 70px;
     left: 0;
     width: 100%;
-    overflow-x: scroll;
+    gap: 0;
   }
 }
 
@@ -36,7 +36,8 @@
   .cards {
     display: flex;
     align-items: center;
-    
+    transform: translateX(calc(var(--active-card-index, 0) * -100%));
+    transition: transform 0.25s ease;
   }
 }
 

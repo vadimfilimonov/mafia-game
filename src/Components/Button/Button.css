@@ -9,4 +9,6 @@
   background-color: tomato;
   border: none;
   cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
 }
