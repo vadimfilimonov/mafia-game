@@ -66,6 +66,7 @@
     font-size: 200px;
     cursor: pointer;
     pointer-events: auto;
+    border-radius: 0;
   }
 
   .card__left-part,
