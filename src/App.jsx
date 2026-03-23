@@ -13,7 +13,9 @@ function App() {
     const storedRoles = localStorage.getItem('roles');
     if (!storedRoles) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setRoles([...GAMES_ROLES]);
+      const shuffledRoles = _.shuffle([...GAMES_ROLES]);
+      setRoles(shuffledRoles);
+      localStorage.setItem('roles', JSON.stringify(shuffledRoles));
       return;
     }
 
