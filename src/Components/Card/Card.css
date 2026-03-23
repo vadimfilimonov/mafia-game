@@ -11,11 +11,12 @@
   font-size: 32px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
-  cursor: pointer;
-  transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.3s ease;
+  background-color: #007bff;
+  transform: rotateY(180deg); 
 }
 
 .card::after {
+  content: attr(data-emoji);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -34,37 +35,18 @@
 }
 
 
-.card--closed {
-  color: #007bff; 
-  font-weight: 900;
-  background-color: white;
-}
-
-.card--closed::after {
-  content: attr(data-number);
-}
-
-.card--active { 
-  background-color: #007bff;
-  transform: rotateY(180deg); 
-}
-
-.card--active::after{ 
-  content: attr(data-emoji);
-}
-
-.card--active.card--red {
+.card--red {
   background-color: red;
 }
 
-.card--active.card--black {
+.card--black {
   background-color: black;
 }
 
-.card--active.card--don {
+.card--don {
   background-color: purple;
 }
 
-.card--active.card--sheriff {
+.card--sheriff {
   background-color: yellow;
 }
