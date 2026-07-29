@@ -6,7 +6,7 @@ help:
 	@echo "  make start  - Run development server"
 	@echo "  make build  - Build production bundle"
 	@echo "  make lint   - Run ESLint"
-	@echo "  make deploy - Build and deploy to GitHub Pages"
+	@echo "  make deploy - Build and deploy to GitHub Pages and Surge"
 
 install:
 	npm install
@@ -19,7 +19,7 @@ build:
 
 lint:
 	npx stylelint '**/*.css' --fix
-	npx eslint . --fix
+	npx eslint src --fix
 
 deploy:
 	DEPLOY_TARGET=gh-pages npx vite build

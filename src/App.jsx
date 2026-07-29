@@ -1,22 +1,44 @@
 import { useEffect, useState } from 'react';
-import _ from 'lodash';
 import Button from './Components/Button/Button';
 import Card from './Components/Card/Card';
 import Control from './Components/Control/Control';
 import { GAMES_ROLES } from './consts';
 import './App.css'
 
+const expectedRoles = [...GAMES_ROLES].sort();
+
+const shuffleRoles = (roles) => {
+  const shuffledRoles = [...roles];
+
+  for (let index = shuffledRoles.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffledRoles[index], shuffledRoles[randomIndex]] = [shuffledRoles[randomIndex], shuffledRoles[index]];
+  }
+
+  return shuffledRoles;
+};
+
+const hasValidRoles = (roles) => {
+  if (!Array.isArray(roles) || roles.length !== expectedRoles.length) {
+    return false;
+  }
+
+  return [...roles].sort().every((role, index) => role === expectedRoles[index]);
+};
+
 const getInitialRoles = () => {
   const storedRoles = localStorage.getItem('roles');
 
   if (!storedRoles) {
-    return _.shuffle([...GAMES_ROLES]);
+    return shuffleRoles(GAMES_ROLES);
   }
 
   try {
-    return JSON.parse(storedRoles);
+    const roles = JSON.parse(storedRoles);
+
+    return hasValidRoles(roles) ? roles : shuffleRoles(GAMES_ROLES);
   } catch {
-    return [...GAMES_ROLES];
+    return shuffleRoles(GAMES_ROLES);
   }
 };
 
@@ -32,7 +54,7 @@ function App() {
   const handleReset = () => {
     setActiveCardIndex(0);
     setIsControlModalOpen(false);
-    const shuffledRoles = _.shuffle(roles);
+    const shuffledRoles = shuffleRoles(roles);
     setRoles(shuffledRoles);
   };
 
