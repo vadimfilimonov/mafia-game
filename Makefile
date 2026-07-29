@@ -1,11 +1,15 @@
-.PHONY: help start build lint deploy
+.PHONY: help install start build lint deploy
 
 help:
 	@echo "Available commands:"
+	@echo "  make install - Install dependencies"
 	@echo "  make start  - Run development server"
 	@echo "  make build  - Build production bundle"
 	@echo "  make lint   - Run ESLint"
 	@echo "  make deploy - Build and deploy to GitHub Pages"
+
+install:
+	npm install
 
 start:
 	npm run dev
