@@ -15,8 +15,8 @@
   margin-top: 28px;
 }
 
-@media (width <= 768px) {
-  .container__toolbar {
+@media (width <= 768px), (height <= 500px) and (width <= 1024px) {
+  .toolbar.container__toolbar {
     display: none;
   }
 }
@@ -27,7 +27,7 @@
   gap: 20px;
 }
 
-@media (width <= 768px) {
+@media (width <= 768px), (height <= 500px) and (width <= 1024px) {
   .container__cards {
     position: fixed;
     top: 0;
@@ -35,17 +35,17 @@
     left: 0;
     width: 100%;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
-@media (width <= 768px) {
+@media (width <= 768px), (height <= 500px) and (width <= 1024px) {
   .cards {
     display: flex;
     gap: 0;
     align-items: center;
     height: 100%;
-    transform: translateX(calc(var(--active-card-index, 0) * -100vw));
-    transition: transform 0.25s ease;
+    touch-action: pan-y pinch-zoom;
   }
 }
 
@@ -58,7 +58,7 @@
   display: none;
 }
 
-@media (width <= 768px) {
+@media (width <= 768px), (height <= 500px) and (width <= 1024px) {
   .control-trigger {
     position: fixed;
     top: 16px;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import Button from './Components/Button/Button';
 import Card from './Components/Card/Card';
 import Control from './Components/Control/Control';
@@ -6,6 +7,7 @@ import { GAMES_ROLES } from './consts';
 import './App.css'
 
 const expectedRoles = [...GAMES_ROLES].sort();
+const mobileMediaQuery = '(max-width: 768px), (max-width: 1024px) and (max-height: 500px)';
 
 const shuffleRoles = (roles) => {
   const shuffledRoles = [...roles];
@@ -44,26 +46,31 @@ const getInitialRoles = () => {
 
 function App() {
   const [roles, setRoles] = useState(getInitialRoles);
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [deckVersion, setDeckVersion] = useState(0);
   const [isControlModalOpen, setIsControlModalOpen] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    active: false,
+    breakpoints: {
+      [mobileMediaQuery]: { active: true },
+    },
+  });
 
   useEffect(() => {
     localStorage.setItem('roles', JSON.stringify(roles));
   }, [roles]);
 
   const handleReset = () => {
-    setActiveCardIndex(0);
     setIsControlModalOpen(false);
-    const shuffledRoles = shuffleRoles(roles);
-    setRoles(shuffledRoles);
+    setRoles(shuffleRoles(roles));
+    setDeckVersion((version) => version + 1);
   };
 
-  const handleNextCard = () => {
-    setActiveCardIndex((prevIndex) => (prevIndex + 1) % roles.length);
-  };
+  const handleCardClick = (event) => {
+    const { left, width } = event.currentTarget.getBoundingClientRect();
+    const method = event.clientX < left + width / 2 ? 'scrollPrev' : 'scrollNext';
 
-  const handlePrevCard = () => {
-    setActiveCardIndex((prevIndex) => (prevIndex - 1 + roles.length) % roles.length);
+    emblaApi?.[method]();
   };
 
   return (
@@ -78,15 +85,13 @@ function App() {
           ⚙️
         </button>
       )}
-      <div className="container__cards">
-        <div className="cards" style={{ '--active-card-index': activeCardIndex }}>
+      <div className="container__cards" key={deckVersion} ref={emblaRef} onClick={handleCardClick}>
+        <div className="cards">
           {roles.map((role, index) =>
             <Card
               key={index}
               role={role}
               number={index + 1}
-              handleRightPartClick={handleNextCard}
-              handleLeftPartClick={handlePrevCard}
             />
           )}
         </div>
